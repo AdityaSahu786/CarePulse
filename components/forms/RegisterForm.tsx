@@ -12,16 +12,9 @@ import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
+import { FormFieldType } from "./PatientForm"
 
-export enum FormFieldType  {
-    INPUT = 'input',
-    TEXTAREA = 'textarea',
-    PHONE_INPUT = 'phoneInput',
-    CHECKBOX = 'checkbox',
-    DATE_PICKER = 'datePicker',
-    SELECT = 'select',
-    SKELETON = 'skeleton'
-}
+
  
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -29,7 +22,7 @@ const formSchema = z.object({
   }),
 })
  
-const RegisterForm = () => {
+const RegisterForm = ({ user}: { user: User }) => {
     
     const router = useRouter();
     const [isLoading, setisLoading] = useState(false);
@@ -78,24 +71,6 @@ const RegisterForm = () => {
         iconAlt="user"
         />
 
-       <CustomFormField
-        fieldType={FormFieldType.INPUT}
-        control={form.control}
-        name="email"
-        label="Email"
-        placeholder="sahuadi786@gmail.com"
-        iconSrc="/assets/icons/user.svg"
-        iconAlt="email"
-        />
-
-<CustomFormField
-        fieldType={FormFieldType.PHONE_INPUT}
-        control={form.control}
-        name="phone"
-        label="Phone Number"
-        placeholder="(+91) 123-456-123"
-        
-        />
       <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
     </form>
   </Form>
