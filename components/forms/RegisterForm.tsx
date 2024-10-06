@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
-import { Form } from "@/components/ui/form"
+import { Form, FormControl } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
@@ -63,7 +63,9 @@ const RegisterForm = ({ user}: { user: User }) => {
         </section>
 
         <section className="space-y-6">
+          <div className="mb-9 space-y-1">
           <h2 className="sub-header">Personal Information.</h2>
+          </div>
         </section>
 
 
@@ -71,11 +73,71 @@ const RegisterForm = ({ user}: { user: User }) => {
         fieldType={FormFieldType.INPUT}
         control={form.control}
         name="name"
-        label="Full name"
+        label="full-name"
         placeholder="Aditya Sahu"
         iconSrc="/assets/icons/user.svg"
         iconAlt="user"
         />
+        
+        <div className="flex flex-col gap-6 xl:flex-row">
+        <CustomFormField
+        fieldType={FormFieldType.INPUT}
+        control={form.control}
+        name="email"
+        label="Email"
+        placeholder="sahuadi786@gmail.com"
+        iconSrc="/assets/icons/user.svg"
+        iconAlt="email"
+        />
+
+        <CustomFormField
+        fieldType={FormFieldType.PHONE_INPUT}
+        control={form.control}
+        name="phone"
+        label="Phone Number"
+        placeholder="(+91) 123-456-123"
+        
+        />
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+        <CustomFormField
+        fieldType={FormFieldType.DATE_PICKER}
+        control={form.control}
+        name="birthDate"
+        label="Date of Birth"
+        
+        />
+
+        <CustomFormField
+        fieldType={FormFieldType.SKELETON}
+        control={form.control}
+        name="gender"
+        label="Gender"
+         renderSKeleton={(field) => (
+           <FormControl>
+           
+           </FormControl>
+         )}
+        
+        />
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          
+        </div>
 
       <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
     </form>
