@@ -119,11 +119,11 @@ const RegisterForm = ({ user}: { user: User }) => {
         label="Gender"
          renderSKeleton={(field) => (
            <FormControl>
-             <RadioGroup className="flex h-11 gap-6 xl:justify-between" onValueChange={field.onChange} defaultValue={field.value}>
+             <RadioGroup className="flex h-11 gap-1 xl:justify-between" onValueChange={field.onChange} defaultValue={field.value}>
                  {GenderOptions.map((option) => (
                   <div key={option} className="radio-group">
                      <RadioGroupItem value={option} id={option} />
-                     <Label htmlFor={option} className="cursor-point">
+                     <Label htmlFor={option} className="cursor-pointer">
                        {option}
                      </Label>
                   </div>
@@ -135,8 +135,14 @@ const RegisterForm = ({ user}: { user: User }) => {
         />
         </div>
 
+        <section className="space-y-6">
+          <div className="mb-9 space-y-1">
+          <h2 className="sub-header">Medical Information</h2>
+          </div>
+        </section>
+
         <div className="flex flex-col gap-6 xl:flex-row">
-          
+            
         </div>
 
         <div className="flex flex-col gap-6 xl:flex-row">
