@@ -248,6 +248,57 @@ const RegisterForm = ({ user}: { user: User }) => {
             />
         </div>
 
+        <div className="flex flex-col gap-6 xl:flex-row">
+        <CustomFormField
+           fieldType={FormFieldType.TEXTAREA}
+           control={form.control}
+           name="familyMedicalHistory"
+           label="Family medical history"
+           placeholder="Mother had brain cancer, Father had heart diseases"
+            />
+
+            <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="pastMedicalHistory"
+            label="Past medical history"
+            placeholder="Appendectomy, Tonsillectomy"
+            />
+        </div>
+
+
+        <section className="space-y-6">
+          <div className="mb-9 space-y-1">
+          <h2 className="sub-header">Identification and Verification</h2>
+          </div>
+        </section>
+
+        <CustomFormField
+        fieldType={FormFieldType.SELECT}
+        control={form.control}
+        name="primaryPhysician"
+        label="Primary Physician"
+        placeholder="Select a physician"
+        >
+          {Doctors.map((doctor) => (
+            <SelectItem key={doctor.name} value={doctor.name}>
+                   
+                  <div className="flex cursor-pointer items-center gap-2">
+                      <Image 
+                        src={doctor.image}
+                        width={32}
+                        height={32}
+                        alt={doctor.name}
+                        className="rounded-full
+                        border border-dark-500"
+                        />
+                        <p>{doctor.name}</p>
+                  </div>
+
+            </SelectItem>
+          ))}
+        </CustomFormField>
+
       <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
     </form>
   </Form>
