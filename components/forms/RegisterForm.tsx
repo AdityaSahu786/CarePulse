@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import { FormFieldType } from "./PatientForm"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
-import { Doctors, GenderOptions } from "@/constants"
+import { Doctors, GenderOptions, IdentificationTypes } from "@/constants"
 import { Label } from "../ui/label"
 import { SelectItem } from "../ui/select"
 import Image from "next/image";
@@ -276,28 +276,37 @@ const RegisterForm = ({ user}: { user: User }) => {
         <CustomFormField
         fieldType={FormFieldType.SELECT}
         control={form.control}
-        name="primaryPhysician"
-        label="Primary Physician"
-        placeholder="Select a physician"
+        name="identificationType"
+        label="Identification type"
+        placeholder="Select an identification type"
         >
-          {Doctors.map((doctor) => (
-            <SelectItem key={doctor.name} value={doctor.name}>
-                   
-                  <div className="flex cursor-pointer items-center gap-2">
-                      <Image 
-                        src={doctor.image}
-                        width={32}
-                        height={32}
-                        alt={doctor.name}
-                        className="rounded-full
-                        border border-dark-500"
-                        />
-                        <p>{doctor.name}</p>
-                  </div>
-
+          {IdentificationTypes.map((type) => (
+            <SelectItem key={type} value={type} >
+                 {type}
             </SelectItem>
           ))}
         </CustomFormField>
+
+        <CustomFormField
+           fieldType={FormFieldType.INPUT}
+           control={form.control}
+           name="identificationNumber"
+           label="Identification number"
+           placeholder="14234989098"
+            />
+
+        <CustomFormField
+          fieldType={FormFieldType.SKELETON}
+           control={form.control}
+           name="identificationDocument"
+           label="Scanned copy of identification document"
+           renderSKeleton={(field) => (
+           <FormControl>
+              FileUpload
+           </FormControl>
+         )}
+        
+        />
 
       <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
     </form>
